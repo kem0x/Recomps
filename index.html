@@ -16,7 +16,6 @@
       color-scheme: light;
       --background: #fafafa;
       --surface: #fff;
-      --surface-soft: #f5f5f5;
       --foreground: #171717;
       --muted: #737373;
       --subtle: #a3a3a3;
@@ -30,7 +29,6 @@
       color-scheme: dark;
       --background: #0a0a0a;
       --surface: #171717;
-      --surface-soft: #111;
       --foreground: #ededed;
       --muted: #a3a3a3;
       --subtle: #737373;
@@ -44,16 +42,14 @@
     body {
       min-height: 100vh;
       margin: 0;
-      background:
-        radial-gradient(circle at 84% 18%, color-mix(in srgb, var(--foreground) 5%, transparent), transparent 28rem),
-        var(--background);
+      background: var(--background);
       color: var(--foreground);
       -webkit-font-smoothing: antialiased;
       transition: background-color .2s ease, color .2s ease;
     }
     a { color: inherit; text-decoration: none; }
     button { font: inherit; cursor: pointer; }
-    .shell { width: min(1120px, 100%); min-height: 100vh; margin: 0 auto; padding: 24px 24px 40px; }
+    .shell { width: min(1080px, 100%); min-height: 100vh; margin: 0 auto; padding: 24px 24px 40px; }
     header {
       display: flex;
       align-items: center;
@@ -79,87 +75,70 @@
       color: var(--muted);
     }
     .theme-toggle:hover { border-color: var(--border-hover); color: var(--foreground); }
-    main { padding: clamp(76px, 12vw, 148px) 0 72px; }
-    .hero { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(260px, .9fr); align-items: end; gap: 40px; }
-    .eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      margin-bottom: 22px;
-      padding: 6px 12px;
-      border: 1px solid var(--border);
-      border-radius: 999px;
-      background: var(--surface);
-      color: var(--muted);
+    main { padding: 0 0 72px; }
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1.35fr) minmax(250px, .65fr);
+      align-items: end;
+      gap: clamp(40px, 8vw, 100px);
+      padding: clamp(96px, 14vw, 160px) 0 72px;
+      border-bottom: 1px solid var(--border);
+    }
+    .release-line {
+      margin: 0 0 20px;
+      color: var(--subtle);
       font-size: 11px;
+      font-weight: 550;
       letter-spacing: .16em;
       text-transform: uppercase;
     }
-    .status-dot { width: 6px; height: 6px; border-radius: 50%; background: #22c55e; }
-    h1 { max-width: 690px; margin: 0; font-size: clamp(52px, 8vw, 94px); font-weight: 600; letter-spacing: -.06em; line-height: .9; }
-    .lede { max-width: 480px; margin: 28px 0 0; color: var(--muted); font-size: 15px; line-height: 1.75; }
-    .principles { display: grid; gap: 0; border-top: 1px solid var(--border); }
-    .principle { display: grid; grid-template-columns: 34px 1fr; gap: 10px; padding: 14px 0; border-bottom: 1px solid var(--border); }
-    .principle-index { color: var(--subtle); font: 10px ui-monospace, SFMono-Regular, Menlo, monospace; }
-    .principle strong { display: block; margin-bottom: 3px; font-size: 12px; font-weight: 550; }
-    .principle span { color: var(--muted); font-size: 11px; line-height: 1.5; }
-    .collection { margin-top: clamp(70px, 10vw, 120px); }
-    .section-heading { display: flex; align-items: end; justify-content: space-between; gap: 24px; margin-bottom: 18px; }
+    h1 { max-width: 690px; margin: 0; font-size: clamp(58px, 9vw, 104px); font-weight: 600; letter-spacing: -.065em; line-height: .88; }
+    .hero-copy { padding-bottom: 5px; }
+    .lede { max-width: 380px; margin: 0; color: var(--muted); font-size: 15px; line-height: 1.75; }
+    .ownership-note { max-width: 380px; margin: 18px 0 0; color: var(--subtle); font-size: 11px; line-height: 1.6; }
+    .collection { padding: 58px 0 10px; }
+    .section-heading { display: flex; align-items: end; justify-content: space-between; gap: 24px; margin-bottom: 24px; }
     .section-label { margin: 0 0 6px; color: var(--muted); font-size: 10px; letter-spacing: .18em; text-transform: uppercase; }
     h2 { margin: 0; font-size: 25px; font-weight: 560; letter-spacing: -.025em; }
-    .count { color: var(--subtle); font: 10px ui-monospace, SFMono-Regular, Menlo, monospace; letter-spacing: .08em; text-transform: uppercase; }
+    .count { color: var(--subtle); font: 11px ui-monospace, SFMono-Regular, Menlo, monospace; }
     .game-card {
       display: grid;
-      grid-template-columns: minmax(250px, .82fr) minmax(0, 1.18fr);
+      grid-template-columns: minmax(260px, .78fr) minmax(0, 1.22fr);
       overflow: hidden;
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      background: var(--surface);
-      transition: border-color .18s ease, transform .18s ease;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
     }
-    .game-card:hover { border-color: var(--border-hover); transform: translateY(-2px); }
     .game-art {
       position: relative;
-      display: grid;
-      min-height: 300px;
       overflow: hidden;
-      place-items: center;
-      border-right: 1px solid var(--border);
-      background: #05070b;
-      color: #f5f5f5;
+      margin: 24px 0;
+      aspect-ratio: 1;
+      background: #183678;
     }
-    .game-art::before {
-      position: absolute;
-      inset: -40%;
-      background:
-        linear-gradient(120deg, transparent 38%, rgba(37, 99, 235, .42) 39% 45%, transparent 46%),
-        linear-gradient(60deg, transparent 46%, rgba(239, 68, 68, .35) 47% 52%, transparent 53%),
-        repeating-linear-gradient(90deg, transparent 0 39px, rgba(255,255,255,.05) 40px),
-        repeating-linear-gradient(0deg, transparent 0 39px, rgba(255,255,255,.04) 40px);
-      content: "";
-      transform: rotate(-8deg);
-    }
-    .game-monogram { position: relative; z-index: 1; font-size: clamp(44px, 7vw, 76px); font-weight: 700; letter-spacing: -.08em; text-transform: uppercase; }
-    .disc-id { position: absolute; right: 16px; bottom: 14px; z-index: 1; color: rgba(255,255,255,.48); font: 9px ui-monospace, SFMono-Regular, Menlo, monospace; letter-spacing: .12em; }
-    .game-copy { display: flex; min-width: 0; flex-direction: column; justify-content: space-between; padding: clamp(24px, 4vw, 42px); }
-    .game-meta { color: var(--muted); font-size: 10px; letter-spacing: .17em; text-transform: uppercase; }
-    h3 { margin: 13px 0 12px; font-size: clamp(30px, 4vw, 48px); font-weight: 600; letter-spacing: -.045em; }
+    .game-art img { display: block; width: 100%; height: 100%; object-fit: cover; transition: transform .3s ease; }
+    .game-card:hover .game-art img { transform: scale(1.015); }
+    .game-copy { display: flex; min-width: 0; flex-direction: column; justify-content: center; padding: clamp(30px, 5vw, 58px); }
+    .game-meta { color: var(--subtle); font-size: 10px; letter-spacing: .15em; text-transform: uppercase; }
+    h3 { margin: 15px 0 14px; font-size: clamp(34px, 5vw, 56px); font-weight: 600; letter-spacing: -.05em; }
     .game-description { max-width: 520px; margin: 0; color: var(--muted); font-size: 13px; line-height: 1.7; }
-    .tags { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 22px; }
-    .tag { padding: 6px 9px; border: 1px solid var(--border); border-radius: 999px; color: var(--muted); font-size: 9px; letter-spacing: .11em; text-transform: uppercase; }
-    .game-actions { display: flex; align-items: center; gap: 10px; margin-top: 34px; }
-    .primary, .secondary { display: inline-flex; min-height: 40px; align-items: center; justify-content: center; padding: 0 16px; border-radius: 6px; font-size: 11px; letter-spacing: .08em; text-transform: uppercase; }
-    .primary { background: var(--button); color: var(--button-text); }
-    .secondary { border: 1px solid var(--border); color: var(--muted); }
-    .secondary:hover { border-color: var(--border-hover); color: var(--foreground); }
+    .game-note { margin: 16px 0 0; color: var(--subtle); font-size: 11px; line-height: 1.6; }
+    .game-actions { display: flex; align-items: center; gap: 18px; margin-top: 30px; }
+    .primary, .secondary { display: inline-flex; min-height: 42px; align-items: center; justify-content: center; font-size: 11px; font-weight: 550; letter-spacing: .08em; text-transform: uppercase; }
+    .primary { padding: 0 18px; border-radius: 6px; background: var(--button); color: var(--button-text); }
+    .primary:hover { opacity: .82; }
+    .secondary { min-height: auto; color: var(--muted); border-bottom: 1px solid var(--border-hover); }
+    .secondary:hover { color: var(--foreground); }
+    .coming-next { display: flex; justify-content: space-between; gap: 24px; padding: 22px 0; color: var(--subtle); font-size: 11px; line-height: 1.55; }
+    .coming-next strong { color: var(--muted); font-weight: 550; }
     footer { display: flex; justify-content: space-between; gap: 24px; margin-top: 52px; padding-top: 18px; border-top: 1px solid var(--border); color: var(--subtle); font-size: 10px; line-height: 1.55; }
     footer p { max-width: 620px; margin: 0; }
     @media (max-width: 760px) {
       .shell { padding: 20px 16px 32px; }
       .hero { grid-template-columns: 1fr; align-items: start; }
-      .principles { margin-top: 12px; }
       .game-card { grid-template-columns: 1fr; }
-      .game-art { min-height: 230px; border-right: 0; border-bottom: 1px solid var(--border); }
+      .game-art { width: min(100%, 420px); margin-bottom: 0; }
+      .game-copy { padding: 30px 0 38px; }
+      .coming-next { flex-direction: column; gap: 5px; }
       footer { flex-direction: column; }
     }
     @media (prefers-reduced-motion: reduce) { *, *::before { scroll-behavior: auto !important; transition: none !important; } }
@@ -171,42 +150,41 @@
       <a href="https://ol.mr" aria-label="Return to ol.mr">ol.mr / recomps</a>
       <div class="header-actions">
         <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Switch theme"><span>☾</span></button>
-        <a href="https://github.com/kem0x" target="_blank" rel="noopener noreferrer">GitHub</a>
+        <a href="https://github.com/kem0x/Recomps" target="_blank" rel="noopener noreferrer">Source</a>
       </div>
     </header>
     <main>
       <section class="hero">
         <div>
-          <div class="eyebrow"><span class="status-dot"></span>Preservation experiments</div>
-          <h1>Games,<br>recompiled.</h1>
-          <p class="lede">Native-feeling ports of games that deserve a cleaner way to run—built from original logic, with modern platforms and optional quality-of-life improvements.</p>
+          <p class="release-line">A collection by ol.mr</p>
+          <h1>Old games,<br>playable again.</h1>
         </div>
-        <div class="principles" aria-label="Project principles">
-          <div class="principle"><span class="principle-index">01</span><div><strong>Bring your own files</strong><span>Copyrighted game data and system firmware are never distributed.</span></div></div>
-          <div class="principle"><span class="principle-index">02</span><div><strong>Original by default</strong><span>Enhancements remain optional and individually configurable.</span></div></div>
-          <div class="principle"><span class="principle-index">03</span><div><strong>Open development</strong><span>Source, findings, and compatibility work are published as they mature.</span></div></div>
+        <div class="hero-copy">
+          <p class="lede">A growing home for game recompilations built around the web, with modern presentation and optional quality-of-life improvements.</p>
+          <p class="ownership-note">You bring your own legally obtained game and system files. This collection never distributes them.</p>
         </div>
       </section>
       <section class="collection">
         <div class="section-heading">
           <div><p class="section-label">Playable now</p><h2>The collection</h2></div>
-          <span class="count">01 project</span>
+          <span class="count">1 available</span>
         </div>
         <article class="game-card">
-          <div class="game-art" aria-hidden="true"><span class="game-monogram">Pepsi<br>man</span><span class="disc-id">SLPS-01762 · 1999</span></div>
+          <a class="game-art" href="https://pepsiman.ol.mr" aria-label="Play Pepsiman Recompiled">
+            <img src="/pepsiman.png" width="512" height="512" alt="Pepsiman pointing toward the viewer" fetchpriority="high">
+          </a>
           <div class="game-copy">
-            <div>
-              <div class="game-meta">PlayStation · KID · Experimental</div>
-              <h3>Pepsiman</h3>
-              <p class="game-description">The original game logic running natively on macOS and in the browser, with real memory-card persistence, remappable controls, and optional QoL settings.</p>
-              <div class="tags"><span class="tag">WebAssembly</span><span class="tag">macOS</span><span class="tag">Controller</span><span class="tag">BYO files</span></div>
-            </div>
+            <div class="game-meta">Pepsiman · PlayStation · 1999</div>
+            <h3>Pepsiman Recompiled</h3>
+            <p class="game-description">The cult PS1 runner, recompiled for the browser with widescreen, controller remapping, persistent saves, level select, and optional visual improvements.</p>
+            <p class="game-note">WebAssembly-first · Version 1.0</p>
             <div class="game-actions">
-              <a class="primary" href="https://repsiman.ol.mr">Play</a>
+              <a class="primary" href="https://pepsiman.ol.mr">Play now</a>
               <a class="secondary" href="https://github.com/kem0x/RepsiMan" target="_blank" rel="noopener noreferrer">Source</a>
             </div>
           </div>
         </article>
+        <div class="coming-next"><strong>More recomps are in development.</strong><span>Each project keeps its own releases, saves, and compatibility notes.</span></div>
       </section>
     </main>
     <footer>
